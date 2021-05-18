@@ -12,6 +12,7 @@ state = {
   peso: 0,
   altura: 0,
   legenda: "Iderteminado",
+  cor:'#73A2BF',
 }
 
   calcularIMC = () => {
@@ -23,23 +24,28 @@ state = {
 
     if(resultado < 18.5){
       this.setState({
-        legenda: 'Magresa'
+        legenda: 'Magresa',
+        cor: '#7f8c8d',
       });
     } else if(resultado >= 18.5 && resultado < 25){
       this.setState({
-        legenda: 'Normal'
+        legenda: 'Normal',
+        cor: '#73A2BF',
       });
     } else if(resultado >= 25 && resultado < 30){
       this.setState({
-        legenda: 'Sobrepeso'
+        legenda: 'Sobrepeso',
+        cor: '#f39c12',
       });
     } else if(resultado >= 30 && resultado < 40){
       this.setState({
-        legenda: 'Obesidade 1'
+        legenda: 'Obesidade 1',
+        cor: '#e74c3c',
       });
     } else if(resultado >= 40 && resultado < 50){
       this.setState({
-        legenda: 'Obesidade 2'
+        legenda: 'Obesidade 2',
+        cor: '#c0392b',
       });
     }
 
@@ -55,7 +61,7 @@ state = {
       <Text style={styles.legenda}>Seu IMC</Text>
       <Divider />
       
-      <View style={styles.seuPeso}>
+      <View style={[styles.seuPeso,{backgroundColor: this.state.cor}]}>
         <Text style={styles.kg}>{this.state.imc}</Text>
         <Text style={styles.diagnostico}>{this.state.legenda}</Text>
       </View>
@@ -71,46 +77,7 @@ state = {
       <Button mode='contained' color='#96C6D9' onPress={this.calcularIMC}> Calcular
       </Button>
 
-      <DataTable style={styles.tabelaPeso}>
-    <DataTable.Header>
-      <DataTable.Title>IMC</DataTable.Title>
-      <DataTable.Title numeric>Classificação</DataTable.Title>
-      
-    </DataTable.Header>
-
-    <DataTable.Row>
-      <DataTable.Cell> abaixo 18.5</DataTable.Cell>
-      <DataTable.Cell numeric>abaixo do peso</DataTable.Cell>
-    </DataTable.Row>
-
-    <DataTable.Row>
-       <DataTable.Cell>18,5 a 24,9</DataTable.Cell>
-       <DataTable.Cell numeric>peso ideal</DataTable.Cell>
-    </DataTable.Row>
-
-    <DataTable.Row>
-       <DataTable.Cell>25 a 29,9</DataTable.Cell>
-       <DataTable.Cell numeric>sobrepeso</DataTable.Cell>
-    </DataTable.Row>
-
-    <DataTable.Row>
-       <DataTable.Cell>30 a 34,9</DataTable.Cell>
-       <DataTable.Cell numeric>Obesidade 1</DataTable.Cell>
-    </DataTable.Row>
-
-    <DataTable.Row>
-       <DataTable.Cell>35 a 39,9</DataTable.Cell>
-       <DataTable.Cell numeric>Obesidade 2</DataTable.Cell>
-    </DataTable.Row>
-
-    <DataTable.Row>
-       <DataTable.Cell>acima de 40</DataTable.Cell>
-       <DataTable.Cell numeric>Obesidade 3</DataTable.Cell>
-    </DataTable.Row>
-
     
-
-  </DataTable>
       
       </View>
     );
@@ -121,8 +88,9 @@ state = {
 const styles = StyleSheet.create({
   app:{
     padding: 10,
+    justifyContent: 'center',
     backgroundColor: '#0A0B0D',
-    //height: '100%',
+    height: '100%',
     
   },
   legenda: {
@@ -153,15 +121,11 @@ const styles = StyleSheet.create({
   seuPeso:{
   marginTop:10,
   marginBottom:10,
-  backgroundColor:'#73A2BF',
   padding: 8,
   borderRadius: 17,
   width: '80%',
+  alignSelf:'center',
   
-  },
-  tabelaPeso: {
-    marginTop:10,
-    backgroundColor:'#73A2BF',
   }
 
 
